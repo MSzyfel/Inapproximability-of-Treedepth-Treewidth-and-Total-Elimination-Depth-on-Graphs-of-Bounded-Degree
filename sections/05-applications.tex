@@ -16,7 +16,7 @@ An approximation transfer must also account for the edges already
 present in the input.
 
 The \emph{closure} of a rooted forest joins each vertex to all its
-proper ancestors. A graph is \emph{trivially perfect} if and only if
+ancestors. A graph is \emph{trivially perfect} if and only if
 it is such a closure. Let $f(J)$ be the minimum number of edges
 added to $J$ to obtain a trivially perfect graph, and recall that
 $\totd(J)$ is its minimum total elimination depth.
@@ -24,13 +24,6 @@ The completion identity~\cite[Theorem~8]{HogemoEtAl2021} is
 \begin{equation}\label{eq:tp-fill-depth}
  f(J)=\totd(J)-|V(J)|-|E(J)|.
 \end{equation}
-Indeed, a forest closure has one edge from each vertex to each
-proper ancestor, so its number of edges is
-$\sum_v(\operatorname{depth}_F(v)-1)$. Every trivially perfect
-graph is a forest closure. Requiring it to contain $J$ is equivalent
-to the elimination-forest condition. Subtracting the original edges
-gives the identity.
-
 For any $C\geq1$, a factor-$C$ completion of cost $z$ satisfies
 $f(J)\leq z\leq C f(J)$. Adding the graph order and the number
 of original edges gives
@@ -45,28 +38,28 @@ of original edges gives
 \end{aligned}
 \end{equation}
 where the final inequality uses $C\ge1$.
-Thus Corollary~\ref{cor:total-depth-bounded-degree} also gives NP-hardness
-within some absolute factor $1+\epsilon_0>1$ and UGC hardness
+Thus Corollary~\ref{cor:total-depth-bounded-degree} also gives \textup{NP}-hardness
+within some absolute factor $1+\epsilon_0>1$ and \textup{UGC} hardness
 below $8/7$ for trivially perfect completion on graphs of bounded
 maximum degree. A supplied trivially perfect supergraph has a
 forest representation, whose total depth equals its number of edges
 plus its order, so the adjusted cost also supplies the
-forest needed by the NP extraction argument.
+forest needed by the \textup{NP} extraction argument.
 
 \Needspace{6\baselineskip}
 \begin{theorem}\label{thm:tp-completion-sse}
 Every fixed constant-factor approximation for the minimum number
-of edges added to obtain a trivially perfect graph is SSE-hard,
+of edges added to obtain a trivially perfect graph is \textup{SSE}-hard,
 including on graphs of bounded maximum degree.
 \end{theorem}
 
 \begin{proof}
-Apply~\eqref{eq:tp-adjusted-cost} to the SSE hardness of total
+Apply~\eqref{eq:tp-adjusted-cost} to the \textup{SSE} hardness of total
 depth in Corollary~\ref{cor:total-depth-bounded-degree}.
 \end{proof}
 
 Deciding whether at most $k$ edges suffice to complete a graph to a
-trivially perfect graph is NP-hard~\cite{Yannakakis1981,HogemoEtAl2021}.
+trivially perfect graph is \textup{NP}-hard~\cite{Yannakakis1981,HogemoEtAl2021}.
 Bliznets,
 Cygan, Komosa, Mach, and Pilipczuk show that, under the Exponential
 Time Hypothesis (ETH), for some
@@ -74,7 +67,7 @@ fixed $c\ge1$ there is no
 $2^{O(k^{1/4}/\log^c k)}n^{O(1)}$-time algorithm for this completion
 problem, where $k$ is the number of added edges and $n$ is the input
 order~\cite[Theorem~1.1]{BliznetsEtAl2016}.
-The SSE hardness of \emph{chordal} Minimum Fill-In at every fixed factor,
+The \textup{SSE} hardness of \emph{chordal} Minimum Fill-In at every fixed factor,
 whose target graphs have no induced cycle of length at least four,
 is already known~\cite[Theorem~1.2]{APW}. Restricting the
 target class to trivially perfect graphs changes the optimum, so
@@ -104,24 +97,24 @@ at least $(c/4)\sqrt{\varepsilon}\,mN'$, whereas the YES cost is at
 most $4\varepsilon mN'$. Their ratio is at least
 $c/(16\sqrt{\varepsilon})$, which exceeds any fixed constant for a
 sufficiently small fixed $\varepsilon$. Hence the completion problem
-is SSE-hard to approximate within every fixed constant on bipartite
+is \textup{SSE}-hard to approximate within every fixed constant on bipartite
 inputs as well.
 
 \subsection{Deletion and labeling objectives}
 
 \paragraph{Vertex integrity and fragmentation.}
-For $c_J(S)$ the largest component order of $J-S$, vertex integrity is
+For $c_J(S)$ the largest connected component order of $J-S$, vertex integrity is
 $\operatorname{vi}(J)=\min_S(|S|+c_J(S))$, with $c_J(V(J))=0$.
 The elementary inequality
 $\td(J)\leq\operatorname{vi}(J)$ follows by putting $S$ on a chain
-and its components on separate chains below it. In the layered graph,
+and its connected components on separate chains below it. In the layered graph,
 deleting all copies of a minimum source vertex cover leaves $q$ separate
 cliques on $\alphaI(G)$ vertices. Thus the same YES construction gives
 $\operatorname{vi}(S_q(G))\leq q(n-\alphaI(G))+\alphaI(G)$,
 while Theorem~\ref{thm:ugc-structural} supplies the NO lower bound.
 The parameter choices of Theorem~\ref{thm:ugc-hardness} therefore
-also give UGC hardness for vertex integrity below $4/3$.
-For SSE hardness, let $J=\mathcal L(G^*)$ be the output in the
+also give \textup{UGC} hardness for vertex integrity below $4/3$.
+For \textup{SSE} hardness, let $J=\mathcal L(G^*)$ be the output in the
 proof of Theorem~\ref{thm:sse-hardness}, and take $D$ to be the output vertices
 corresponding to crossing host edges. The YES construction supplies
 \[
@@ -138,19 +131,19 @@ using $q=\lceil2/\varepsilon\rceil$ and $\varepsilon\le1$.
 In the NO case, the separator
 lemma with $\rho=2/3$ gives $b_{2/3}(J)\geq\beta |V(J)|$, where
 $b_{2/3}(J)$ is the minimum size of a set whose deletion leaves every
-component of order at most $2|V(J)|/3$, and
+connected component of order at most $2|V(J)|/3$, and
 $\beta=(c/2)\sqrt\varepsilon$. Choose $\varepsilon$ small enough
 that $\beta\leq1/12$ and $\varepsilon\leq1$. For any
 $S\subseteq V(J)$, if
 $c_J(S)>|V(J)|/2$, then $|S|+c_J(S)>|V(J)|/2\geq\beta|V(J)|$.
-Otherwise every component of $J-S$ has at most $|V(J)|/2$ vertices,
+Otherwise every connected component of $J-S$ has at most $|V(J)|/2$ vertices,
 so $S$ is a $2/3$-balanced separator and
 $|S|\geq b_{2/3}(J)\geq\beta|V(J)|$. Thus
 $\operatorname{vi}(J)\geq\beta|V(J)|$.
 The ratio of the NO lower bound to the YES upper bound grows as
 $1/\sqrt\varepsilon$. Thus, for every fixed factor, a sufficiently
 small fixed $\varepsilon$ separates the two cases. Hence vertex integrity has no constant-factor
-approximation under SSEH.
+approximation under \textup{SSEH}.
 
 The \emph{fracture number} is
 $\operatorname{fr}(J)=\min_S\max\{|S|,c_J(S)\}$, and
@@ -159,7 +152,7 @@ a tree decomposition whose underlying tree is a star.
 The standard comparisons
 $\operatorname{fr}\leq\operatorname{vi}\leq2\operatorname{fr}$ and
 $\operatorname{sw}+1\leq\operatorname{vi}\leq2(\operatorname{sw}+1)$
-give SSE hardness at every fixed factor for fracture number. For
+give \textup{SSE} hardness at every fixed factor for fracture number. For
 starwidth, the YES and NO bounds on vertex integrity give
 $\operatorname{sw}(J)\leq4\varepsilon N$ and
 $\operatorname{sw}(J)\geq\beta N/2-1$, respectively, where
@@ -172,12 +165,12 @@ by that number. Since $N>0$, a sufficiently large fixed number of
 copies absorbs the additive $1$. These comparisons
 and an $O(\log\OPT)$ approximation
 for vertex integrity are recorded in~\cite[Section 1.3 and Theorem 5.1]{GimaEtAlIntegrity}.
-Earlier NP-hardness includes vertex integrity on connected line
+Earlier \textup{NP}-hardness includes vertex integrity on connected line
 graphs~\cite[Corollary 4.11]{GimaEtAlIntegrity} and starwidth~\cite{VanEe2017}.
 
 \paragraph{General and average customizable labels.}
 A customizable hub labeling assigns $L(v)\subseteq V(J)$ so that
-every $s$--$t$ path meets $L(s)\cap L(t)$, including the zero-length
+every $s$--$t$ path contains a vertex of $L(s)\cap L(t)$, including the zero-length
 path at a vertex~\cite{BlumStorandt2023}.
 The labeling is \emph{hierarchical} if there is one vertex order
 such that every member of $L(v)$ is ranked at least as high as
@@ -196,39 +189,27 @@ hub labeling. Their Corollary~5 identifies the corresponding minimum
 average label size~\cite[Corollary 5, full version]{BlumStorandt2023}.
 Thus the same lower bound applies to every CCH search-space labeling.
 For the resulting graph $J=\mathcal L(G^*)$, the YES forest provides hierarchical
-labels by assigning each vertex its ancestors, including itself.
-Take any $s$--$t$ path and choose a vertex $z$ of minimum depth on it.
-Every edge of $J$ joins comparable vertices in the forest. Starting
-from $z$ and proceeding along the path in either direction, induction
-shows that each vertex is a descendant of $z$. Suppose the current
-vertex has this property and let $w$ be the next vertex. If
-$w$ is a descendant of the current vertex, transitivity gives the
-claim. Otherwise, $w$ is an ancestor of the current vertex. Since the
-path has no repeated vertices, $w\ne z$. Every such ancestor is either
-a proper ancestor of $z$ or a descendant of $z$. The first possibility
-would give $w$ smaller depth than $z$, contrary to the choice of $z$.
-Hence $w$ is a descendant of $z$. Therefore $z$ is a common ancestor
-of $s$ and $t$, so these are valid customizable labels. Each label
-has size at most $4\varepsilon |V(J)|$.
+labels by assigning each vertex itself and its ancestors.
+Every path between incomparable endpoints contains a common ancestor
+by~\cite[Observation~2.2]{GiannopoulouEtAl2017}; for comparable endpoints,
+the shallower endpoint belongs to both labels. Hence these are valid
+customizable labels, each of size at most $4\varepsilon |V(J)|$.
 Lemma~\ref{lem:linegraph-separators}
 with $\rho=2/3$ gives NO average at least
 $(c/8)\sqrt\varepsilon\,|V(J)|$. Consequently every constant
-approximation factor is SSE-hard for average or maximum general
+approximation factor is \textup{SSE}-hard for average or maximum general
 label size and average hierarchical label size. The same holds for
 the average upward vertex search-space size in a CCH. Here an
 elimination order adds edges
-between the remaining neighbors of each eliminated vertex. Orient
+between the remaining neighbors of each eliminated vertex. Direct
 the resulting edges toward the later vertex in that order.
 The upward search space of $v$ is the set of vertices reachable
-from $v$ along these oriented edges, including $v$ itself.
-Use a postorder of the YES elimination forest, eliminating each
-subtree before its root. When a vertex is eliminated, its remaining
-neighbors are among its ancestors: this holds for original edges by
-the elimination-forest property, and each added fill edge joins two
-such ancestors, which lie on one path. Inductively, every fill edge
-joins comparable vertices. Since each such edge is oriented toward
-its later endpoint, every upward search space is contained in the
-vertex's ancestor set and has size at most its forest label.
+from $v$ along these directed edges, including $v$ itself.
+By Lemma~4 and Corollary~5 of~\cite{BlumStorandt2023}, the vertex
+order respected by the YES hierarchical labels gives a CCH whose
+upward search space at each vertex is contained in its label.
+Thus the same YES bound applies to both average and maximum
+search-space size.
 Total label size is average size times the
 graph order and has the same gap.
 
@@ -260,8 +241,8 @@ Gruber's cycle-rank/star-height correspondence and polynomial binary
 encoding~\cite[Theorems 20 and 23]{Gruber2008} transfer our three
 treedepth gaps to star height for languages represented by trim binary
 bideterministic partial DFAs. For the value-preserving graph step,
-add to $G$ a universal vertex $a$, replace each edge by its two
-oriented arcs, label every arc with a distinct letter, and take $a$
+add to $G$ a universal vertex $a$, replace each edge $uv$ by the two
+directed edges $(u,v)$ and $(v,u)$, label every directed edge with a distinct letter, and take $a$
 as the initial and sole accepting state. Then
 $\td(G+a)=\td(G)+1$ and
 $\operatorname{cr}(\overleftrightarrow{G+a})=\td(G)$
@@ -272,7 +253,7 @@ Thus every state lies on a path from and back to that state, so its
 transition digraph is strongly connected. Bideterminism over two
 letters bounds its indegree and outdegree by two, and McNaughton's
 theorem identifies its cycle rank with the language's star height.
-Gruber proves cycle-rank NP-hardness
+Gruber proves cycle-rank \textup{NP}-hardness
 even for digraphs of maximum outdegree two and maximum total degree
 four~\cite[Corollary 24]{Gruber2008}. Our consequence is the transfer
 of the present approximation gaps.
@@ -284,7 +265,7 @@ label also contains an edge with a larger label. Its minimum
 possible largest label is the edge-ranking number
 $\operatorname{er}(B)$.
 Let $G^*$ be the host multigraph in Section~\ref{sec:sseh}, and put
-$H=\mathcal L(G^*)$. The SSE reduction proves hardness of
+$H=\mathcal L(G^*)$. The \textup{SSE} reduction proves hardness of
 $\td(H)$ at every fixed factor. For a simple graph $B$, the standard
 identity $\operatorname{er}(B)=\td(\mathcal L(B))$ transfers
 treedepth hardness of its line graph to edge ranking~\cite{BodlaenderRankings}.
@@ -301,24 +282,17 @@ vertices on the other.
 For each edge occurrence $e=uv$ before subdivision, the two new
 edges are $ux_e$ and $x_ev$. Their vertices in $\mathcal L(B)$ are
 adjacent. Contracting these pairs, one pair for every edge occurrence,
-recovers $H$. Treedepth cannot increase under these operations. For a
-contraction of an edge $uv$, its endpoints are comparable in any valid
-elimination forest. Suppose $u$ is above $v$. Identify $v$ with $u$,
-delete $v$, and attach the child subtrees of $v$ to its parent. Every
-neighbor of $u$ or $v$ remains comparable with the identified vertex,
-and no root-to-leaf path gets longer. Vertex deletion is handled by
-removing the vertex and attaching its child subtrees to its parent, while
-edge deletion leaves the forest unchanged. Hence
+recovers $H$. Since treedepth is minor-monotone~\cite[Section~1]{Reidl2014},
 $\td(H)\leq\td(\mathcal L(B))$. Conversely, replace each vertex of
 an elimination forest of $H$ by a two-vertex chain, attaching its
 child subtrees below the lower copy. Every edge of $\mathcal L(B)$
 joins two copies of adjacent vertices of $H$, or the two copies of
 one vertex. The expanded forest is therefore valid and has at most
 twice the original height. Thus
-$\td(H)\leq\operatorname{er}(B)\leq2\td(H)$. Applying the SSE
+$\td(H)\leq\operatorname{er}(B)\leq2\td(H)$. Applying the \textup{SSE}
 treedepth hardness at factor $2C$ gives hardness for edge ranking on
 simple bipartite graphs at every fixed factor $C\geq1$.
-Lam and Yue proved that computing an optimal edge ranking is NP-hard
+Lam and Yue proved that computing an optimal edge ranking is \textup{NP}-hard
 at ICS 1996~\cite{LamYue1996}.
 
 \paragraph{Hypergraph widths and binary queries.}
@@ -365,23 +339,17 @@ and $\gamma_t(e)$ is the weight on hyperedge $e$, then each vertex
 of $B_t$ receives total incident weight at least one. Since every
 hyperedge has size two,
 $|B_t|\leq\sum_e\gamma_t(e)|e\cap B_t|\leq2\sum_e\gamma_t(e)\leq2w$.
-Retain an original vertex in a bag if and only if both of its clones
-occur there. Each retained vertex accounts for two bag vertices, so
-each retained bag has size at most $2w/2=w$. The bags containing a
-retained vertex form a connected nonempty subtree: the two clone
-subtrees intersect, since the pair is an edge, and their intersection
-is connected. If $uv\in E(G)$, its four clones form a clique, so their
-bag subtrees intersect pairwise. Subtrees of a tree have the Helly
-property: any finite family that intersects pairwise has a common
-node. Hence one bag contains all four clones. The retained bags form
-a tree decomposition of $G$ with bag size at most $w$, so
+Consequently $\operatorname{tw}(G[K_2])+1\leq2w$.
+The clique-product formula
+$\operatorname{tw}(G[K_2])+1=2(\operatorname{tw}(G)+1)$
+\cite[Theorem~24]{GurskiWeishaupt2025} therefore gives
 $\operatorname{tw}(G)+1\leq w$. Thus
 $\operatorname{fhw}(G[K_2])\geq\operatorname{tw}(G)+1$. The definitions
 give $\operatorname{fhw}\leq\operatorname{ghw}\leq\operatorname{hw}$,
 since fractional covers relax integral covers and hypertree
 decompositions also impose the special condition. Together with the
 common upper bound, this proves the three equalities.
-Thus the NP $r<12/11$, UGC $r<4/3$, and established SSE treewidth
+Thus the \textup{NP} $r<12/11$, \textup{UGC} $r<4/3$, and established \textup{SSE} treewidth
 hardness at every fixed factor transfer even to rank-two hypergraphs.
 The transfer compares the width value $\operatorname{tw}(G)+1$, which
 is the size of a largest bag. Suppose an output graph has order $N$,
@@ -413,14 +381,13 @@ Bodlaender and Fomin identify the equivalent chordal-completion
 objective and prove that, unless $\mathrm{P}=\mathrm{NP}$, no
 polynomial-time algorithm approximates binary total state space within
 any fixed factor~\cite[Lemma 2, Section 8, and Theorem 32]{BodlaenderFomin2005}.
-The elementary bounds
-$2^{\operatorname{tw}(G)+1}\leq\operatorname{TSS}(G)\leq n2^{\operatorname{tw}(G)+1}$
-follow from a decomposition with at most $n$ bags and optimal width,
-obtained from the maximal cliques of an optimal chordal completion,
-and from the fact that every decomposition has a bag of size at least
-$\operatorname{tw}(G)+1$. They give
-NP hardness within $2^{\chi n}$ for every fixed $0<\chi<1/18$,
-and UGC hardness for every fixed $0<\chi<1/6$.
+We use the bounds
+$2^{\operatorname{tw}(G)+1}\leq\operatorname{TSS}(G)\leq n2^{\operatorname{tw}(G)+1}$.
+The upper bound follows from~\cite[Lemma~4]{BodlaenderFomin2005} with
+$f(i)=2^i$; the lower bound holds because every decomposition has a bag
+of size at least $\operatorname{tw}(G)+1$. They give
+\textup{NP} hardness within $2^{\chi n}$ for every fixed $0<\chi<1/18$,
+and \textup{UGC} hardness for every fixed $0<\chi<1/6$.
 For each reduction, subtract the YES treewidth upper bound from the
 NO treewidth lower bound. The resulting differences are
 \[
@@ -433,9 +400,9 @@ NO treewidth lower bound. The resulting differences are
    &n=RN.
  \end{array}
 \]
-For NP hardness, choose $\epsilon>0$ so that
+For \textup{NP} hardness, choose $\epsilon>0$ so that
 $1/18-2\epsilon/9>\chi$, then take $R$ large enough that
-$1/(3R)<1/18-2\epsilon/9-\chi$. For UGC, choose $\zeta>0$ so that
+$1/(3R)<1/18-2\epsilon/9-\chi$. For \textup{UGC}, choose $\zeta>0$ so that
 $1/6-2\zeta>\chi$, then take $R$ large enough that
 $1/(3R)<1/6-2\zeta-\chi$. In either case, let $\delta>0$ be the
 remaining margin, so the relevant coefficient exceeds $\chi$ by

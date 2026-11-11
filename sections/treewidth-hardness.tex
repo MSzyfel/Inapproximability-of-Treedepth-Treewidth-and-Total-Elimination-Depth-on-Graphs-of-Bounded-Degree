@@ -1,12 +1,12 @@
 \subsection{Treewidth}
 \label{sec:tw-transfer}
 
-We prove UGC-hardness below $4/3$ by transferring a balanced,
+We prove \textup{UGC}-hardness below $4/3$ by transferring a balanced,
 unweighted tripartite Vertex Cover gap to treewidth. We derive this
 gap from Khot--Regev using a multipartite product. B\'erczi,
 Chandrasekaran, Kir\'aly, Lee, and Xu prove a related weighted
-$k$-partite Vertex Cover gap under UGC~\cite[Sections~3.5--3.6]{BCKLX2017}.
-The same transfer gives the NP-hardness bound in
+$k$-partite Vertex Cover gap under \textup{UGC}~\cite[Sections~3.5--3.6]{BCKLX2017}.
+The same transfer gives the \textup{NP}-hardness bound in
 Section~\ref{subsec:np-treewidth}.
 
 \begin{theorem}\label{thm:tw-ugc}
@@ -46,38 +46,15 @@ adjacent in $G$.
 Its vertex partition into three cliques makes $K_R(G)$
 \emph{co-tripartite}.
 
-\begin{lemma}[A bag covering the source edges]\label{lem:tw-central-bag}
-Every tree decomposition of $K_R(G)$ has a bag containing a vertex
-cover of $G_1\mathbin{\dot\cup}\cdots\mathbin{\dot\cup}G_R$.
-In particular, that bag has size at least $R\vc(G)$.
+\begin{lemma}[Vertex-cover lower bound]\label{lem:tw-central-bag}
+For every such $G$ and every integer $R\geq1$,
+$\operatorname{tw}(K_R(G))\geq R\vc(G)-1$.
 \end{lemma}
 
-\begin{proof}
-We apply the cover argument from~\cite[proof of Lemma~6]{BonnetTreewidth}
-to the disjoint union of the $R$ source copies.
-Fix a tree decomposition with underlying tree $T$ and bags $B_u$.
-For each $X\in\{A,B,C\}$ with $X^*\ne\emptyset$, the bags
-containing each vertex form
-a connected subtree of $T$. Since $X^*$ is a clique, every two of
-these subtrees intersect. The Helly property for subtrees of a tree
-therefore gives a node $u_X$ whose bag contains all of $X^*$
-~\cite[Lemma~4]{BonnetTreewidth}. If $X^*$ is empty, choose any node
-$u_X$. Let $u$ be the median of
-$u_A,u_B,u_C$, namely the unique common node of their three pairwise
-connecting paths.
-
-Consider an edge $xy$ of one of the original copies, with $x\in X^*$
-and $y\in Y^*$ for different parts $X,Y$. If either $u_X$ or $u_Y$
-equals $u$, the bag at $u$ already contains the corresponding endpoint.
-Otherwise, $u_X$ and $u_Y$ lie in different components of $T-u$.
-If neither endpoint belonged to the bag at $u$, the connected set of
-bags containing $x$ would stay in the component containing $u_X$,
-and the analogous set for $y$ would stay in the component containing
-$u_Y$. These sets could not intersect, contrary to the existence of
-a bag covering $xy$. Thus $B_u$ contains an endpoint of every
-original edge. The disjoint union of the $R$ copies has vertex-cover number
-$R\vc(G)$, so this bag has size at least $R\vc(G)$.
-\end{proof}
+This is Bonnet's lower bound~\cite[Lemma~6]{BonnetTreewidth}, since
+the graph of edges between the three specified cliques is
+$G_1\mathbin{\dot\cup}\cdots\mathbin{\dot\cup}G_R$, whose vertex-cover
+number is $R\vc(G)$.
 
 \begin{lemma}[A decomposition from a source cover]\label{lem:tw-cover-decomposition}
 For every vertex cover $S$ of $G$, the graph $K_R(G)$ has a tree
@@ -136,12 +113,11 @@ For every such $G$ and every integer $R\geq1$,
 
 
 \begin{proof}
-The Helly argument in Lemma~\ref{lem:tw-central-bag} puts each global
-clique in a bag, so every tree decomposition has a bag of size at least
-$Rn_{\max}$. Lemma~\ref{lem:tw-central-bag} also gives a bag of size
-at least $R\vc(G)$. Thus the largest bag in each decomposition has
-size at least $R\max\{\vc(G),n_{\max}\}$. Subtracting one gives the
-lower bound on treewidth. For the upper bound, apply
+Every tree decomposition has a bag containing a largest global
+clique~\cite[Lemma~4]{BonnetTreewidth}, so
+$\operatorname{tw}(K_R(G))\geq Rn_{\max}-1$.
+Combining this with Lemma~\ref{lem:tw-central-bag} gives the lower
+bound. For the upper bound, apply
 Lemma~\ref{lem:tw-cover-decomposition} to a minimum cover of $G$:
 its largest bag has size at most
 $R\max\{\vc(G),n_{\max}\}+n_{\max}$. Subtracting one gives the
@@ -153,10 +129,10 @@ polynomial in the source size.
 
 \subsubsection{The approximation gap}
 
-For the UGC reduction we need cover thresholds $(1/2+\zeta)N$ and
+For the \textup{UGC} reduction we need cover thresholds $(1/2+\zeta)N$ and
 $(2/3-\zeta)N$ on balanced tripartite graphs. More generally,
 B\'erczi, Chandrasekaran, Kir\'aly, Lee, and Xu prove that for every fixed $k\geq3$ and sufficiently
-small fixed $\epsilon,\eta,\beta>0$, it is UGC-hard to distinguish weighted $k$-partite
+small fixed $\epsilon,\eta,\beta>0$, it is \textup{UGC}-hard to distinguish weighted $k$-partite
 Vertex Cover instances of total vertex weight $k$ with optimum at most
 $k(1+\epsilon)/2+k\eta$ from instances with optimum at least
 $(k-1)(1-\epsilon)(1-\beta)$. As $\epsilon,\eta,\beta$ tend to zero,
@@ -178,13 +154,13 @@ $\Delta(P_k(G))=(k-1)\Delta(G)$.
 
 \begin{proof}
 All $k$ copies of an independent set of $G$ form an independent
-set of $P_k(G)$, proving the first bound. For the upper bound, let
-$I$ be any independent set in the product. Let $m_v$ count the copies
-of $v$ in $I$, and put $D=\{v:m_v\ge2\}$. If distinct $u,v\in D$
-were adjacent in $G$, choose a copy $u_i\in I$. The set $I$ contains
-at least two copies of $v$, so one has a layer index $j\ne i$. Then
-$u_iv_j$ would be an edge inside $I$. Thus $D$ is independent, and
-$|I|=\sum_vm_v\le n+(k-1)|D|\le n+(k-1)\alphaI(G)$.
+set of $P_k(G)$, proving the first bound. Since $P_k(G)=G\times K_k$,
+the upper bound is the case $H=K_k$ of \v{S}pacapan's
+direct-product inequality~\cite{Spacapan2011}:
+\[
+ \alphaI(G\times H)\leq
+ |V(H)|\alphaI(G)+|V(G)|\alphaI(H)-\alphaI(G)\alphaI(H).
+\]
 Each copy of a vertex has one neighbor in each of the other
 $k-1$ layers for every source neighbor, giving the degree identity.
 \end{proof}
@@ -199,12 +175,23 @@ with $\vc(G)\leq(1/2+\zeta)N$ \textup{(YES)} from those with
 $\vc(G)\geq(1-1/k-\zeta)N$ \textup{(NO)}.
 \end{theorem}
 
-The promise follows from Theorem~\ref{thm:kr} and
-Lemma~\ref{lem:multipartite-product}. Appendix~\ref{app:multipartite-normalization}
-records the parameter substitution. Taking $k=3$ and applying the
-replication lemma proves the treewidth gap.
+\begin{proof}
+Apply Theorem~\ref{thm:kr} with $\eta=\zeta/2$ and form $P_k(G)$
+from the resulting $n$-vertex graph. Lemma~\ref{lem:multipartite-product}
+gives a simple unweighted graph on $N=kn$ vertices with $k$ equal
+independent parts. Taking complements in its independent-set bounds gives
+\[
+\begin{array}{ll}
+\textup{YES:}&\vc(P_k(G))\leq(1/2+\eta)N\leq(1/2+\zeta)N,\\[2pt]
+\textup{NO:}&\vc(P_k(G))>
+\left(1-\frac1k-\frac{k-1}{k}\eta\right)N
+\geq\left(1-\frac1k-\zeta\right)N.
+\end{array}
+\]
+For fixed $k$, the construction has polynomial size.
+\end{proof}
 
-
+Taking $k=3$ and applying the replication lemma proves the treewidth gap.
 
 \begin{proof}[Proof of Theorem~\ref{thm:tw-ugc}]
 Fix $1\le r<4/3$. Since $2/3>r/2$, choose a fixed rational

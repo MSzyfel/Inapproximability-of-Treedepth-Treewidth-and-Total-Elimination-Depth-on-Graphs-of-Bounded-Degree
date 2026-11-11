@@ -78,7 +78,7 @@ side of every biclique must additionally be partitionable into a
 bounded number of sets, each contained in a clique-factor support.
 The corresponding clique-factor bags anchor the side sets in the
 biclique completion lemma.
-The UGC applications require a bounded-degree independent-set source so
+The \textup{UGC} applications require a bounded-degree independent-set source so
 that their retained source edges satisfy the condition on $E_0$.
 
 \subsection{Completing sparse factors}
@@ -138,22 +138,22 @@ heavy if it contains the entire subtree $T_v$ for at least $t$
 vertices $v\in U$. If both sides were heavy, choose $t$ vertices whose subtrees lie
 entirely on each side. No bag could contain one vertex from each
 set, so no edge could join the sets. They would be anticomplete,
-contrary to the hypothesis. Orient the edge toward its
+contrary to the hypothesis. Direct the edge toward its
 heavy side if one exists, and arbitrarily if neither is heavy.
 Following outgoing edges in a finite tree eventually reaches a
 node with no outgoing edge. Call such a node a \emph{sink}, and let
 $u$ be one.
 
-For each component $C$ of $T-u$, at most $t-1$ vertices $v\in U$
+For each connected component $C$ of $T-u$, at most $t-1$ vertices $v\in U$
 have $T_v\subseteq C$. Otherwise, the edge from $u$ into $C$ would be
-oriented away from the sink $u$. Every vertex of $U$ absent from the
-bag at $u$ has its entire subtree in one of these components.
+directed away from the sink $u$. Every vertex of $U$ absent from the
+bag at $u$ has its entire subtree in one of these connected components.
 For $t=1$ there are no such vertices. For $t\ge2$, suppose their
-total were at least $3t-2$. Collect components until the number of
+total were at least $3t-2$. Collect connected components until the number of
 vertices of $U$ assigned to them first reaches $t$. This count is at most
-$2t-2$, since each component contributes at most $t-1$. At least
-$t$ vertices remain in the other components. The two groups lie in
-different components of $T-u$, so no bag contains a vertex from each
+$2t-2$, since each connected component contributes at most $t-1$. At least
+$t$ vertices remain in the other connected components. The two groups lie in
+different connected components of $T-u$, so no bag contains a vertex from each
 group. The decomposition therefore has no edge between the groups,
 contrary to the no-hole condition. Thus at most $3t-3$ vertices of $U$
 are absent from the bag at $u$.
@@ -537,25 +537,25 @@ to a loop, and deleting loops and repeated edges preserves
 connectedness.
 
 For the bipartite construction, suppose its output had more than one
-component. For every $x\in V(\mathcal E)$, let $a(x)$ be the output
-component containing $\pi_A(x)$ and let $b(x)$ be the component
+connected component. For every $x\in V(\mathcal E)$, let $a(x)$ be the output
+connected component containing $\pi_A(x)$ and let $b(x)$ be the connected component
 containing $\pi_B(x)$. Each step $xy$ of $\mathcal E$ and its reverse
 give output edges $\pi_A(x)\pi_B(y)$ and
 $\pi_A(y)\pi_B(x)$. Hence $a(x)=b(y)$ and $a(y)=b(x)$.
 Along an odd cycle these equalities imply $a(x)=b(x)$ at a cycle
 vertex. Since $\mathcal E$ is connected, propagating the equalities
 along paths shows that every $a(x)$ and $b(x)$ is this same
-component. The maps are onto, so every output vertex lies in it,
+connected component. The maps are onto, so every output vertex lies in it,
 contrary to the supposition. Thus the bipartite output is connected.
 \end{proof}
 
-\subsection{A bounded-degree independent-set source under UGC}
+\subsection{A bounded-degree independent-set source under \textup{UGC}}
 \label{sec:bounded-degree-ugc-source}
 
 We derive a bounded-degree version of the independent-set promise
 used in Section~\ref{sec:ugc}: independent-set density close to
 $1/2$ in the YES case and arbitrarily small constant density in
-the NO case. Austrin, Khot, and Safra prove under UGC that independent
+the NO case. Austrin, Khot, and Safra prove under \textup{UGC} that independent
 set in maximum-degree-$d$ graphs is hard to approximate within a factor
 $\Theta(d/\log^2 d)$, using a randomized reduction
 \cite[Theorem~1.2 and Section~5.2]{AKS2011}. Their reduction obtains
@@ -596,10 +596,10 @@ to the label at $u$. A \emph{labeling} assigns one label to every
 vertex. Its value is the fraction of constraints it satisfies,
 counting parallel constraints separately. The instance's optimum
 is the largest such fraction.
-Khot and Regev show that ordinary UGC is equivalent to the
+Khot and Regev show that ordinary \textup{UGC} is equivalent to the
 following regular bipartite promise, which AKS use
 \cite[Conjecture~2.4]{AKS2011}: for every fixed $\gamma>0$, it is
-NP-hard to distinguish a YES instance in which there is a set
+\textup{NP}-hard to distinguish a YES instance in which there is a set
 $V_0\subseteq V$ of at least $(1-\gamma)|V|$ right vertices and one
 labeling satisfies every constraint incident to a vertex in $V_0$,
 from a NO instance of value at most $\gamma$. The underlying
@@ -714,33 +714,10 @@ In the NO case, every $S'\subseteq V(G_1)$ satisfies
 \end{equation}
 \end{lemma}
 
-\begin{proof}
-Take any $S'\subseteq V(G_1)$ and let $f_u$ be the fraction of
-clones of $u$ in $S'$. Include each original vertex $u$ in a random
-set $S$ independently with probability $f_u$. Since $a_u=m_u/N_{\mathrm{cl}}$,
-\[
- \mathbb E[a(S)]=\sum_u a_uf_u
- =\frac1{N_{\mathrm{cl}}}\sum_u m_uf_u=\frac{|S'|}{N_{\mathrm{cl}}}.
-\]
-There are no loops in $G^-$. Thus the two endpoints of each edge
-are chosen independently, and
-\[
- \mathbb E[e_{G^-}(S)]
- =\sum_{uv}w_{uv}f_uf_v
- =e_{G_1}(S').
-\]
-Taking expectations in~\eqref{eq:aks-loop-free-density} and using
-convexity of $\Gamma_\xi$ gives
-\[
- e_{G_1}(S')=\mathbb E[e_{G^-}(S)]
- \ge\mathbb E[\Gamma_\xi(a(S))]
-   -\varepsilon_{\mathrm{dens}}-\varepsilon_{\mathrm{loop}}
- \ge\Gamma_\xi(|S'|/N_{\mathrm{cl}})
-   -\varepsilon_{\mathrm{dens}}-\varepsilon_{\mathrm{loop}}.
-\]
-This is the argument of~\cite[Section~4, Step~1]{AKS2011}, applied
-after the loop removal of Lemma~\ref{lem:aks-loop-removal}.
-\end{proof}
+This is the density-preservation claim of Austrin, Khot, and
+Safra~\cite[Section~4, Step~1]{AKS2011}, applied to the loop-free graph
+$G^-$ from Lemma~\ref{lem:aks-loop-removal} with error parameter
+$\varepsilon_{\mathrm{dens}}+\varepsilon_{\mathrm{loop}}$.
 
 \subsubsection{Deterministic sparsification of a dense-set promise}
 
@@ -837,12 +814,12 @@ cited theorem.
 \end{proof}
 
 Combining the three steps gives the source promise used in the
-UGC applications.
+\textup{UGC} applications.
 
 \begin{theorem}[Bounded-degree independent-set source]
 \label{thm:bounded-degree-kr-source}
 For every fixed rational $0<\eta<1/10$, there is a constant
-$D_\eta$ such that the ordinary UGC gives a deterministic
+$D_\eta$ such that the ordinary \textup{UGC} gives a deterministic
 polynomial-time hardness reduction to simple unweighted graphs
 $G$ of maximum degree at most $D_\eta$, with
 $\alphaI(G)\ge(1/2-\eta)|V(G)|$ in the YES case and

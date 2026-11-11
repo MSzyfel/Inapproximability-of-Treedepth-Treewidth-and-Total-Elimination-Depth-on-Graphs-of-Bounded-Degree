@@ -10,7 +10,7 @@ bicliques $T_x^0\times T_x^1$, $T_x^0\times W_x^1$, and
 $T_x^1\times W_x^0$ over all variables $x$.
 The star edges have maximum degree three, every vertex belongs to
 at most three local factors, and their side-size ratios are at
-most $12/5$. Each $W_x^a$ meets at most two source parts.
+most $12/5$. Each $W_x^a$ intersects at most two source parts.
 \end{lemma}
 
 \begin{proof}
@@ -46,8 +46,8 @@ to the factor at its endpoint.
 \label{thm:sse-bounded-degree}
 For each fixed $r\ge1$, approximating treedepth within factor $r$
 on simple unweighted graphs of bounded maximum degree is
-NP-hard if $r<18/17$, Unique Games-hard if $r<4/3$, and
-SSE-hard for every fixed $r$.
+\textup{NP}-hard if $r<18/17$, Unique Games-hard if $r<4/3$, and
+\textup{SSE}-hard for every fixed $r$.
 The degree bound depends only on the excluded factor. All reductions
 are deterministic.
 \end{corollary}
@@ -58,7 +58,7 @@ dense constructions. Denote its error parameter by $\tau>0$.
 The gap transfers use Lemma~\ref{lem:factor-gap-transfer} with
 exponent $a=1$.
 
-\emph{NP-hardness.}
+\emph{\textup{NP}-hardness.}
 Use the local factors of Lemma~\ref{lem:parity-local-factors},
 the three anchor cliques, and, after omitting $z_A,z_B,z_C$, the
 three anchor--part bicliques. Retain the witness-star edges.
@@ -84,7 +84,7 @@ The coefficient of $m$ is positive by the parameter choice, so a
 sufficiently large fixed source repetition makes this difference
 positive.
 
-\emph{UGC hardness.}
+\emph{\textup{UGC} hardness.}
 Use the source in Theorem~\ref{thm:bounded-degree-kr-source}. In
 $S_q(G)$, replace its $q$ layer cliques and retain its cross-layer
 edges. Each vertex belongs to one factor, and its retained degree
@@ -101,8 +101,8 @@ loss is at most $\tau qn$, so the sparse NO height is greater than
 \]
 The sparse YES height is at most the dense YES bound $A_{q,\eta}n$.
 
-\emph{SSE hardness.}
-Apply Lemma~\ref{lem:sse-unweighted-gap} with its source parameter
+\emph{\textup{SSE} hardness.}
+Apply Theorem~\ref{thm:sse-source} with its source parameter
 $\varepsilon=\eta$, and let $G^*$ be the resulting host, with $N$
 edges counted with multiplicity. Lemma~\ref{lem:linegraph-factors}
 verifies the factor hypotheses for $\mathcal L(G^*)$ with $d_{\mathrm{fac}}=2$,
@@ -124,7 +124,7 @@ $\beta>8r\eta$. The sparse YES height is at most $4\eta N$.
 
 \end{proof}
 
-The NP-hardness assertion answers the bounded-degree conjecture of
+The \textup{NP}-hardness assertion answers the bounded-degree conjecture of
 Schirrmacher, Siebertz, and
 Vigny~\cite[Conjecture~1]{SchirrmacherSiebertzVigny2025}.
 Weighted treedepth hardness at maximum degree ten is proved
@@ -146,8 +146,8 @@ $b(H)\leq\operatorname{tw}(H)+1$~\cite[Lemma~5.3]{APW}.
 \label{thm:tw-sse-bounded-degree}
 For each fixed $r\ge1$, approximating treewidth within factor $r$
 on simple unweighted graphs of bounded maximum degree is
-NP-hard if $r<12/11$, Unique Games-hard if $r<4/3$, and
-SSE-hard for every fixed $r$.
+\textup{NP}-hard if $r<12/11$, Unique Games-hard if $r<4/3$, and
+\textup{SSE}-hard for every fixed $r$.
 The degree bound depends only on the excluded factor. All reductions
 are deterministic.
 \end{corollary}
@@ -157,13 +157,13 @@ We verify the hypotheses of Theorem~\ref{thm:tw-sparsification}
 for each construction and denote its error parameter by $\tau$.
 We use Lemma~\ref{lem:factor-gap-transfer} with exponent $a=1$.
 
-\emph{NP-hardness.}
+\emph{\textup{NP}-hardness.}
 Use the three global cliques of $K_R(G_F)$ and, within each
 replicated copy, the local factors of
 Lemma~\ref{lem:parity-local-factors}. Retain the witness-star edges.
 Thus $d_{\mathrm{fac}}=4$, $d_0=3$, and $\kappa=12/5$.
 Each truth block lies in one global clique, while each $W_x^a$
-meets at most two. Thus every biclique side partitions into at
+intersects at most two. Thus every biclique side partitions into at
 most two sets contained in supplied clique factors, giving $s=2$.
 
 The dense graph has order $9Rm$. By
@@ -182,7 +182,7 @@ the YES upper bound from the NO lower bound gives
 The coefficient of $m$ is positive by the parameter choice, and
 $r-1\ge0$.
 
-\emph{UGC hardness.}
+\emph{\textup{UGC} hardness.}
 For the source of Theorem~\ref{thm:bounded-degree-kr-source}, put
 $Q=P_3(G)$, using the product defined in
 Lemma~\ref{lem:multipartite-product}. In $K_R(Q)$, replace its three global cliques
@@ -204,8 +204,8 @@ sparse YES width is at most $R(3/2+3\eta)n+n-1$. Therefore
 Again, the parameter choice makes the coefficient of $n$ positive,
 and $r-1\ge0$.
 
-\emph{SSE hardness.}
-Apply Lemma~\ref{lem:sse-unweighted-gap} with source parameter
+\emph{\textup{SSE} hardness.}
+Apply Theorem~\ref{thm:sse-source} with source parameter
 $\varepsilon=\eta$, and let $G^*$ be the resulting host, with $N$
 edges counted with multiplicity. Use $\mathcal L(G^*)$, of order $N$,
 with the clique factors of Lemma~\ref{lem:linegraph-factors}:
@@ -227,7 +227,7 @@ Repeating every host edge a sufficiently large fixed number of times
 makes this difference positive and preserves the factor hypotheses.
 \end{proof}
 
-The SSE treewidth hardness at every fixed factor on unrestricted
+The \textup{SSE} treewidth hardness at every fixed factor on unrestricted
 graphs is due to Wu, Austrin, Pitassi, and Liu~\cite[Theorem~1.1]{APW}. The bounded-degree
 statement here follows by applying our treewidth sparsification
 theorem to the line-graph construction.
@@ -241,10 +241,10 @@ theorem to the line-graph construction.
 \label{thm:total-depth-ugc-bounded-degree}
 \label{cor:total-depth-sse-bounded-degree}
 There is an absolute constant $\epsilon_0>0$ such that approximating
-total depth within factor $1+\epsilon_0$ is NP-hard on simple
+total depth within factor $1+\epsilon_0$ is \textup{NP}-hard on simple
 unweighted graphs of bounded maximum degree. On such graphs,
 total depth is also Unique Games-hard to approximate within every
-fixed factor $1\le r<8/7$, and SSE-hard to approximate within every
+fixed factor $1\le r<8/7$, and \textup{SSE}-hard to approximate within every
 fixed factor $r\ge1$. The degree bound depends only on the excluded
 factor. All reductions are deterministic.
 \end{corollary}
@@ -255,7 +255,7 @@ parameter $\tau>0$.
 The corresponding exponent in Lemma~\ref{lem:factor-gap-transfer}
 is $a=2$.
 
-\emph{NP-hardness.}
+\emph{\textup{NP}-hardness.}
 Let $\delta_0>0$ be the relative-loss hardness constant for
 Independent Set on simple cubic graphs~\cite{AlimontiKann2000}.
 Choose a fixed rational
@@ -308,7 +308,7 @@ $2\epsilon_0$ and yields an independent set of $J$ of size
 at least $(1-184\epsilon_0)\alphaI(J)>(1-\delta_0)\alphaI(J)$,
 contradicting the cubic source hardness.
 
-\emph{UGC hardness.}
+\emph{\textup{UGC} hardness.}
 Use Theorem~\ref{thm:bounded-degree-kr-source} and the graph
 $S_q(G)$. Its layer cliques are the only factors. Each vertex
 belongs to one, and its retained cross-layer degree is at most
@@ -338,8 +338,8 @@ source order $n$,
 This makes the NO bound exceed $r$ times the YES bound. Disjoint
 copies preserve the source densities and maximum degree.
 
-\emph{SSE hardness.}
-Apply Lemma~\ref{lem:sse-unweighted-gap} with source parameter
+\emph{\textup{SSE} hardness.}
+Apply Theorem~\ref{thm:sse-source} with source parameter
 $\varepsilon=\eta$, and let $G^*$ be the resulting host, with $N$
 edges counted with multiplicity. Use $\mathcal L(G^*)$, of order $N$,
 with the clique factors of Lemma~\ref{lem:linegraph-factors}:

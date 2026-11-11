@@ -4,7 +4,7 @@
 \begin{theorem}\label{thm:np-total-depth}
 There is an absolute constant $\epsilon_0>0$ such that approximating
 $\totd(G)$ within factor $1+\epsilon_0$ on simple unweighted graphs is
-NP-hard. In particular, $\totd$ has no polynomial-time approximation
+\textup{NP}-hard. In particular, $\totd$ has no polynomial-time approximation
 scheme unless $\PP=\NP$.
 \end{theorem}
 
@@ -91,7 +91,7 @@ and no other depth increases. Thus the total depth does not increase.
 
 The modification preserves all graph edges. Deletion preserves the
 ancestor relation among the remaining vertices. Every neighbor of
-$u$ belongs to $X$ and is ancestral to $y_X$, so it is ancestral
+$u$ belongs to $X$ and is either $y_X$ or an ancestor of $y_X$, so it is ancestral
 to the reinserted leaf $u$. The ancestor order among vertices of $G$
 is unchanged.
 \end{proof}
@@ -123,7 +123,7 @@ $\widehat G$, and the removed leaves contribute $MW(F_G)$.
 Conversely, every $F_G$ extends by these leaves to an elimination
 forest of $H^{\Sigma}_M(G)$. Therefore
 \eqref{eq:np-total-depth-added-vertices-identity} holds. Finally,
-$\totd(F_G)$ is $N$ plus the number of strict ancestor pairs, so
+$\totd(F_G)$ is $N$ plus the number of ancestor pairs, so
 $\totd(F_G)\le N+\binom N2=N(N+1)/2$. Taking a forest minimizing
 $W$ gives the upper bound in
 \eqref{eq:np-total-depth-added-vertices-bounds}. Nonnegativity of $\totd(F_G)$ gives
@@ -153,17 +153,17 @@ The induced graph in this formula is bipartite, with sides in the two
 parts other than $X$.
 
 For an elimination forest $F_G$ of $\widehat G$, let $S_0$ be the
-vertices ancestral to all three of $y_A,y_B,y_C$, and let $S_1$ be
-those ancestral to two of them and no others.
+vertices whose rooted subtrees contain all three of $y_A,y_B,y_C$,
+and let $S_1$ be those whose rooted subtrees contain exactly two of them.
 
-\begin{lemma}[The same pair of descendants]\label{lem:clique-path-pair}
-If $S_1$ is nonempty, all its vertices are ancestral to the same two
-vertices among $y_A,y_B,y_C$.
+\begin{lemma}[The same pair of subtree vertices]\label{lem:clique-path-pair}
+If $S_1$ is nonempty, the subtrees rooted at its vertices contain the
+same two vertices among $y_A,y_B,y_C$.
 \end{lemma}
 
 \begin{proof}
-For two vertices in a rooted forest, their sets of descendants among
-$y_A,y_B,y_C$ are disjoint or one contains the other.
+For two vertices in a rooted forest, the sets of vertices among
+$y_A,y_B,y_C$ in their rooted subtrees are disjoint or one contains the other.
 The sets for vertices in $S_1$ have size two, so any two intersect.
 They must therefore be equal.
 \end{proof}
@@ -182,22 +182,22 @@ N+3+\operatorname{cost}_X(G)$.
 \end{lemma}
 
 \begin{proof}
-Every vertex of a part is ancestral to its deepest vertex. A vertex
-of $S_1$ has $y_Y,y_Z$ as its two descendants among $y_X,y_Y,y_Z$,
+The subtree rooted at each vertex of a part contains its deepest vertex. A vertex
+of $S_1$ has $y_Y,y_Z$ as the two vertices among $y_X,y_Y,y_Z$ in its subtree,
 so it cannot belong to $X$. Thus $S_1\subseteq Y\cup Z$. A vertex
-of $X\setminus S_0$ has only $y_X$ among these three vertices as a
-descendant. A vertex of $(Y\cup Z)\setminus S_0$ has descendants
-among them only in $\{y_Y,y_Z\}$. The two descendant sets are
+of $X\setminus S_0$ has only $y_X$ among these three vertices in its
+subtree. A vertex of $(Y\cup Z)\setminus S_0$ has vertices
+among them only in $\{y_Y,y_Z\}$ in its subtree. The two sets are
 nonempty and disjoint, so the vertices are incomparable. Therefore
 $S_0$ covers the
 $X$--$(Y\cup Z)$ edges. Likewise, a $YZ$-edge outside $S_0$ with
-neither endpoint in $S_1$ would join a vertex ancestral only to $y_Y$
-to one ancestral only to $y_Z$. They are incomparable, so $S_1$
+neither endpoint in $S_1$ would join a vertex whose subtree contains only $y_Y$
+to one whose subtree contains only $y_Z$ among the three. They are incomparable, so $S_1$
 covers the remaining $YZ$ edges.
 
 The sum of the depths of $y_A,y_B,y_C$ counts a vertex once for each
-of these three vertices below it. Every vertex is counted at least
-once, since it is ancestral to the deepest vertex of its own part.
+of these three vertices in its subtree. Every vertex is counted at least
+once, since its subtree contains the deepest vertex of its own part.
 Hence vertices in $S_0$ are counted three
 times, those in $S_1$ twice, and all others once. Adding the $3$ in
 the definition of $W$ gives
@@ -234,7 +234,7 @@ branch put $S_1$ on a chain, followed by separate chains for the
 remaining $Y$ and $Z$ vertices. Empty chains are omitted. This is
 an elimination forest of $\widehat G$: the vertices in each of $X,Y,Z$
 are comparable along their part's path, and every cross-part edge either
-meets $S_0$ or is a $YZ$-edge meeting $S_1$.
+has an endpoint in $S_0$ or is a $YZ$-edge with an endpoint in $S_1$.
 
 Consider the path through $S_0$ to the $X$-chain and the two paths
 through $S_0,S_1$ to the $Y$- and $Z$-chains. If a final chain is
@@ -266,8 +266,8 @@ vertices are pairwise distinct. Define the parts
 \]
 The three parts are pairwise disjoint and contain all the vertices
 created above.
-The graph $G(J)$ has vertex set $A\cup B\cup C$. For each oriented
-edge $e=u\to v$, add the edges $u^1a_e$, $u^2a_e$, $a_ec_e$,
+The graph $G(J)$ has vertex set $A\cup B\cup C$. For each edge
+$e=uv\in E(J)$ directed as $(u,v)$, add the edges $u^1a_e$, $u^2a_e$, $a_ec_e$,
 $c_ev^1$, and $c_ev^2$. Also add $y_iz_i$ for every $i$ with
 $1\le i\le3n$. There are no other edges, so $A,B,C$ are independent
 parts. The vertices $a_e,c_e$ are the
@@ -391,7 +391,7 @@ $39n/2+3-W(F_G)$ can be obtained in polynomial time.
 \end{lemma}
 
 \begin{proof}
-Use $S_0,S_1$ and the common pair of descendants from
+Use $S_0,S_1$ and the common pair of subtree vertices from
 Lemmas~\ref{lem:clique-path-pair} and~\ref{lem:clique-path-covers}.
 If $S_1$ were empty, we could choose $X=B$ in the cover bound. If
 $S_1$ were nonempty but its pair were not $y_B,y_C$, the deepest

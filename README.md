@@ -21,11 +21,11 @@ excluded approximation factor.
 
 - The main text presents the UGC results, then SSE hardness, NP-hardness,
   bounded-degree reductions, applications, and open questions.
-- `sections/appendix-source-normalizations.tex` contains the source-promise
-  normalizations and the provenance discussion for the NP reduction.
+- `sections/appendix-source-normalizations.tex` contains the provenance
+  discussion for the NP reduction. The short source normalizations appear
+  alongside their statements in the main text.
 - `sections/appendix-auxiliary-proofs.tex` contains the earlier incidence
-  construction argument, the branching inequalities, and the anchor-length
-  derivation.
+  construction argument and the anchor-length derivation.
 
 Build from this directory with:
 

@@ -1,31 +1,44 @@
 \section{Hardness under the Unique Games Conjecture}
 \label{sec:ugc}
 
-We prove ordinary-UGC hardness below $4/3$ for treedepth and
-treewidth, and below $8/7$ for total elimination depth. We begin
-with the treedepth construction. Its first-branch lemmas will also
-be used for total depth.
+A \emph{unique game} consists of a graph $J$ with $E(J)\ne\emptyset$,
+a finite alphabet $[k]$, and, for each edge $uv\in E(J)$, a chosen
+orientation $(u,v)$ and a permutation $\pi_{(u,v)}:[k]\to[k]$.
+A labeling $\lambda:V(J)\to[k]$ satisfies the constraint on $uv$ if
+$\lambda(v)=\pi_{(u,v)}(\lambda(u))$. The \emph{value} of the game is the maximum,
+over all labelings, of the fraction of satisfied edge constraints.
+
+The \emph{Unique Games Conjecture} (\textup{UGC}) asserts that, for every
+fixed $\varepsilon>0$, there is a fixed alphabet size $k$ such that it is
+\textup{NP}-hard to distinguish unique games of value at least
+$1-\varepsilon$ from those of value at most $\varepsilon$
+\cite{KhotRegev}.
+
+%We prove ordinary-\textup{UGC} hardness below $4/3$ for treedepth and
+%treewidth, and below $8/7$ for total elimination depth. We begin
+%with the treedepth construction. Its first-branch lemmas will also
+%be used for total depth.
 
 \subsection{Treedepth}
 \label{subsec:ugc-treedepth}
 
-For a fixed integer $q$, the construction replaces the source graph by
-$q$ clique layers. A large independent set gives a shallow elimination forest: its copies
-can be placed in separate branches after the remaining vertices have
-been removed. For soundness, we prove that branching can save few
-levels when the source independence number is small.
+We start with an intuitive high-level description.
+For a fixed integer $q$, the construction replaces the `source' graph in Theorem~\ref{thm:kr} by
+$q$ clique layers. A large independent set gives a shallow elimination forest: copies
+of its vertices can be placed in separate branches after the remaining vertices have
+been removed. When the source graph has no large independent set, we
+prove that every elimination forest of the constructed graph has large height.
 
-We use the following normalized source promise.
+We use the following independent-set gap of Khot and Regev~\cite{KhotRegev},
+in the unweighted formulation stated by Kuhn and
+Mastrolilli~\cite[Theorem~7]{KuhnMastrolilli2011}.
 
-\begin{theorem}[Khot--Regev, normalized form {\cite[Theorem~3.2 and Section~4]{KhotRegev}}]\label{thm:kr}
+\begin{theorem}[Khot--Regev]\label{thm:kr}
 For every fixed rational $0<\eta<1/10$, it is Unique Games-hard to
 distinguish simple unweighted graphs $G$ on $n\geq1$ vertices with
 $\alphaI(G)\geq(1/2-\eta)n$ \textup{(YES)} from those with
 $\alphaI(G)<\eta n$ \textup{(NO)}.
 \end{theorem}
-
-Appendix~\ref{app:kr-normalization} derives this unweighted form from
-the published weighted promise.
 
 \subsubsection{The layered construction and first-branch notation}
 
@@ -136,7 +149,19 @@ $n_1,\ldots,n_\nu$,
 \]
 \end{lemma}
 
-The proof is given in Appendix~\ref{app:branching-proof}.
+\begin{proof}
+Put $a_j=\sqrt{q_jn_j}$ and choose $k$ with $a_k=\max_j a_j$.
+By Cauchy--Schwarz, nonnegativity, and $a_k\geq a_j$,
+\[
+\begin{aligned}
+ \left(\sum_jq_j\right)\left(\sum_jn_j\right)
+ &\geq\left(\sum_ja_j\right)^2\\
+ &\geq\sum_ja_j^2+2a_k\sum_{j\ne k}a_j\\
+ &\geq3\sum_ja_j^2-2a_k^2
+ =3\sum_jq_jn_j-2\max_j(q_jn_j).
+\end{aligned}
+\]
+\end{proof}
 
 \begin{lemma}[Layers in different children]\label{lem:ugc-layer-usage}
 The sets $I_j$ are pairwise disjoint. Moreover,

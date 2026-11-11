@@ -1,50 +1,54 @@
-\section{Preliminaries}
+\section{Definitions}
 \label{sec:preliminaries}
 
 All graphs produced by our reductions are finite, simple, and
 unweighted. Source graphs may have weights, parallel edges, or loops
 when explicitly stated. An \emph{independent set} contains no adjacent
-pair. A \emph{clique} has every pair of distinct vertices adjacent.
-A \emph{vertex cover} meets every edge. For an unweighted graph $G$,
-let $\alphaI(G)$ denote the maximum independent-set size and
-$\vc(G)$ the minimum vertex-cover size.
-Taking complements gives $\vc(G)=|V(G)|-\alphaI(G)$.
-We write $G[U]$ for the subgraph induced by $U$, $G-U$ for
+pair of vertices.
+For an unweighted graph $G$, let $\alphaI(G)$ denote the size of a maximum independent set.
+A \emph{clique} has every pair of distinct vertices adjacent.
+A \emph{vertex cover} is a subset of vertices $X$ such that each edge is incident to a vertex in $X$.
+Then, $\vc(G)$ the minimum vertex-cover size.
+Taking complements gives
+
+
+For $U\subseteq V(G)$, we write $G[U]$ for the subgraph induced by $U$, $G[U]=(U,\{uv\in E(G)\colon uv\in V(G)\})$, $G-U$ for
 $G[V(G)\setminus U]$, $\Delta(G)$ for maximum degree, and
 $[q]=\{1,\ldots,q\}$. A spanning subgraph retains all vertices
 and some of the edges. A \emph{matching} is a set of edges with
 pairwise disjoint endpoints, and a graph is \emph{cubic} if every
 vertex has degree three.
+A \emph{connected component} of a graph is any of its maximal connected subgraphs.
 
-In a rooted forest, two vertices are \emph{comparable} if one is
-an ancestor of the other. We count a vertex as its own ancestor
-and descendant. A \emph{proper} ancestor is a different vertex.
-The subtree rooted at a vertex consists of that vertex and all
-its descendants.
-The \emph{restriction} of a forest to a vertex subset deletes all
-other vertices and attaches each survivor to its nearest surviving
-proper ancestor, or makes it a root if none remains. It preserves
-the ancestor order between survivors and never increases their depths.
+In a rooted forest, two distinct vertices are \emph{comparable} if one is
+an ancestor of the other; each vertex is also comparable with itself.
+The subtree rooted at a vertex $v$ consists of $v$ and all its descendants.
+For a rooted forest $F$ and $U\subseteq V(F)$, the \emph{restriction}
+$F|_U$ is the rooted forest with vertex set $U$ and edge set $E(F|_U)$ consisting of all $uv$, $u,v\in U$, such that $u$ is an ancestor of $v$ in $F$, and no $w\in U$ is an internal vertex of the  $uv$-path in $F$.
+(Hence, the roots in $F|_U$ are the vertices of $U$ with no ancestor in $U$).
+Denote by $\operatorname{depth}_F(v)$ the \emph{depth} of $v$ in $F$ as the number of its ancestors plus one; hence roots have depth one.
 
-An \emph{elimination forest} $F$ of a graph $H$ is a rooted forest on
-$V(H)$ such that the endpoints of every edge of $H$ are comparable in
-the ancestor order. Its height $h(F)$ is the maximum number of vertices on a
-root-to-leaf path. The \emph{treedepth} $\td(H)$ is the minimum height of
-an elimination forest of $H$. We set $\td(\varnothing)=0$. For
-disconnected graphs, treedepth is the maximum treedepth of a component.
+An \emph{elimination forest} $F$ of a graph $G$ is a rooted forest on
+$V(G)$ such that the endpoints of every edge of $G$ are comparable in $F$.
+The height $h(F)$ is the maximum number of vertices on a
+root-to-leaf path. The \emph{treedepth} $\td(G)$ of a graph $G$ is the minimum height of
+an elimination forest of $G$. We set the treedepth to be $0$ for a graph with no vertices.
+For disconnected graphs, treedepth is the maximum treedepth of a connected component.
 
 The \emph{total depth} of an elimination forest $F$ is
-$\totd(F)=\sum_{v\in V(F)}\operatorname{depth}_F(v)$, with roots at
-depth one. Let $\totd(G)$ be the minimum total depth of an
+$\totd(F)=\sum_{v\in V(F)}\operatorname{depth}_F(v)$.
+Let $\totd(G)$ be the minimum total depth of an
 elimination forest of $G$. This objective is also called
-\emph{VPT-sum}~\cite{HogemoEtAl2021}. For disconnected graphs,
-$\totd$ is the sum of its values on the components. Restricting a forest
-to each component proves one inequality, and their disjoint union
-proves the other.
+\emph{VPT-sum}~\cite{HogemoEtAl2021}.
 
-A \emph{tree decomposition} of $H$ consists of a tree $T$ and bags
-$B_t\subseteq V(H)$ for $t\in V(T)$. For every graph vertex, the
-nodes whose bags contain it form a nonempty connected subtree. Every
-graph edge has both endpoints in some bag. Its width is
-$\max_t|B_t|-1$, and the \emph{treewidth} $\operatorname{tw}(H)$ is
-the minimum such width.
+A \emph{tree decomposition} of $G$ is a pair $(T,B)$, where $B=\{B_t\subseteq V(G):t\in V(T)\}$ is a collection of \emph{bags}, satisfying three conditions:
+\begin{enumerate}
+\item $\displaystyle\bigcup_{t\in V(T)} B_t=V(G)$.
+\item For every $uv\in E(G)$, there is a $t\in V(T)$ such that
+$\{u,v\}\subseteq B_t$.
+\item For every vertex $v$ of $G$, the nodes $t$ with $v\in B_t$
+induce a connected subtree of $T$.
+\end{enumerate}
+Its width is
+$\max_t|B_t|-1$, and the \emph{treewidth} of $G$, denoted $\operatorname{tw}(G)$, is
+the minimum width taken over all three decompositions.
